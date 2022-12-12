@@ -1,0 +1,49 @@
+@media screen and (min-width: 576px) {
+  .css-navbar-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    height: 80px;
+    background-color: #1e1e30;
+    color: white;
+    display: flex;
+    align-items: center;
+    font-family: Roboto;
+  }
+
+  .css-ul-list-container {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+  }
+
+  .css-home-about-list-itself {
+    display: flex;
+    align-items: center;
+  }
+
+  .css-COVID19INDIA-style {
+    font-family: 'Bree Serif';
+    font-size: 20px;
+  }
+
+  .css-INDIA-style {
+    color: #3b82f6;
+  }
+
+  .css-Home-paragraph {
+    margin-right: 30px;
+  }
+
+  .css-LINK-itself {
+    text-decoration: none;
+    color: white;
+  }
+
+  .css-LINK-itself:hover {
+    text-decoration: none;
+    color: white;
+  }
+}

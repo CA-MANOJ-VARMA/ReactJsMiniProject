@@ -1,0 +1,12 @@
+.css-footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  padding: 20px;
+}
+
+.css-icon-itself {
+  width: 20px;
+  margin-right: 20px;
+}
