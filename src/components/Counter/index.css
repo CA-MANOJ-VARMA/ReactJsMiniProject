@@ -65,3 +65,19 @@
 .css-Deceased {
   color: #6c757d;
 }
+
+.css-table-container {
+  width: 1146px;
+  /* height: 2080px; */
+  background: #1e1e30;
+  /* Light / blue-gray / 600 */
+  border: 1px solid #475569;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 12px;
+  color: #f8fafc;
+}
+
+.css-button-asc-desc {
+  background-color: transparent;
+  border-width: 0;
+}
