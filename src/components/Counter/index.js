@@ -156,7 +156,6 @@ const apiStatusConstants = {
   progress: 'PROGRESS',
   succes: 'SUCCESS',
   failurre: 'FAILURE',
-  statesList,
 }
 
 class TablePart extends Component {
@@ -167,14 +166,57 @@ class TablePart extends Component {
     totalRecovered: 0,
     totalDeceased: 0,
     stateDetails: '',
+    reverse: false,
+    searchStatesList: [],
+    searchValueFilter: [],
   }
 
   componentDidMount() {
     this.fetchCallingFunction()
+    this.searchLowerCase()
+  }
+
+  searchLowerCase = () => {
+    this.setState({
+      searchStatesList: statesList.map(eachState => ({
+        state_code: eachState.state_code,
+        state_name: eachState.state_name.toLowerCase(),
+      })),
+    })
   }
 
   searchValueFunction = event => {
-    this.setState({searchValue: event.target.value})
+    const {searchStatesList, searchValueFilter} = this.state
+
+    // console.log(searchStatesList.state_name)
+    const targetSearchValue = event.target.value
+    this.setState({searchValue: targetSearchValue})
+    if (targetSearchValue !== '') {
+      this.setState({
+        apiStatus: apiStatusConstants.initial,
+      })
+      // forEach filtering function
+
+      const stateListSearchReturn = eachItem => {
+        this.setState({searchValueFilter: []})
+        console.log(searchValueFilter)
+        if (
+          eachItem.state_name
+            .toLowerCase()
+            .includes(targetSearchValue.toLowerCase())
+        ) {
+          searchValueFilter.push(eachItem)
+        } else {
+          this.setState({searchValueFilter: []})
+        }
+      }
+      const changeList = statesList.forEach(eachItem =>
+        stateListSearchReturn(eachItem),
+      )
+      console.log(changeList)
+    } else {
+      this.fetchCallingFunction()
+    }
   }
 
   fetchCallingFunction = async () => {
@@ -187,7 +229,7 @@ class TablePart extends Component {
     const jsonData = await totalCases.json()
     this.setState({stateDetails: jsonData})
     const covidCasesAllValues = Object.values(jsonData)
-    console.log(covidCasesAllValues)
+    // console.log(covidCasesAllValues)
     covidCasesAllValues.map(eachState =>
       this.setState(prevState => ({
         totalConfirmed: prevState.totalConfirmed + eachState.total.confirmed,
@@ -221,18 +263,18 @@ class TablePart extends Component {
       stateDetails,
     } = this.state
     // console.log(stateDetails)
+    // console.log(`total states list - {statesList}`)
+    // console.log(statesList.reverse())
 
     const stateDetailsInTable = (statePassedDetails, statePassedName) => (
-      <tbody>
-        <tr>
-          <td>{statePassedName}</td>
-          <td>{statePassedDetails.total.confirmed}</td>
-          <td>{statePassedDetails.total.confirmed}</td>
-          <td>{statePassedDetails.total.recovered}</td>
-          <td>{statePassedDetails.total.deceased}</td>
-          <td>{statePassedDetails.meta.population}</td>
-        </tr>
-      </tbody>
+      <tr key={statePassedName}>
+        <td>{statePassedName}</td>
+        <td>{statePassedDetails.total.confirmed}</td>
+        <td>{statePassedDetails.total.confirmed}</td>
+        <td>{statePassedDetails.total.recovered}</td>
+        <td>{statePassedDetails.total.deceased}</td>
+        <td>{statePassedDetails.meta.population}</td>
+      </tr>
     )
 
     return (
@@ -287,43 +329,65 @@ class TablePart extends Component {
             <p>{totalDeceased}</p>
           </div>
         </div>
-        <table className="css-table-container">
-          <thead className="css-table-header-container">
-            <tr>
-              <th>
-                States/UT
-                <button
-                  type="button"
-                  //   testid="ascendingSort"
-                  className="css-button-asc-desc"
-                >
-                  <FcGenericSortingAsc />
-                </button>
-                <button
-                  type="button"
-                  //   testid="descendingSort"
-                  className="css-button-asc-desc"
-                >
-                  <FcGenericSortingDesc />
-                </button>
-              </th>
-              <th>Confirmed</th>
-              <th>Active</th>
-              <th>Recovered</th>
-              <th>Deceased</th>
-              <th>Population</th>
-            </tr>
-          </thead>
-          <hr />
-          {statesList.map(eachState =>
-            stateDetailsInTable(
-              stateDetails[eachState.state_code],
-              eachState.state_name,
-            ),
-          )}
-        </table>
+        <div className="css-table-container">
+          <table>
+            <thead className="css-table-header-container">
+              <tr>
+                <th>
+                  States/UT
+                  <button
+                    type="button"
+                    //   testid="ascendingSort"
+                    className="css-button-asc-desc"
+                    onClick={this.ascreverse}
+                  >
+                    <FcGenericSortingAsc />
+                  </button>
+                  <button
+                    type="button"
+                    //   testid="descendingSort"
+                    className="css-button-asc-desc"
+                    onClick={this.descreverse}
+                  >
+                    <FcGenericSortingDesc />
+                  </button>
+                </th>
+                <th>Confirmed</th>
+                <th>Active</th>
+                <th>Recovered</th>
+                <th>Deceased</th>
+                <th>Population</th>
+              </tr>
+            </thead>
+            <tbody>
+              {statesList.map(eachState =>
+                stateDetailsInTable(
+                  stateDetails[eachState.state_code],
+                  eachState.state_name,
+                ),
+              )}
+            </tbody>
+          </table>
+        </div>
       </>
     )
+  }
+
+  ascreverse = () => {
+    const {reverse} = this.state
+    if (reverse) {
+      statesList.reverse()
+      this.setState({reverse: false})
+    }
+  }
+
+  descreverse = () => {
+    const {reverse} = this.state
+    if (!reverse) {
+      statesList.reverse()
+      this.setState({reverse: true})
+      console.log(statesList)
+    }
   }
 
   onFetchingDetails = apiStatus => {
@@ -338,8 +402,7 @@ class TablePart extends Component {
   }
 
   render() {
-    const {searchValue, apiStatus} = this.state
-
+    const {searchValue, apiStatus, searchValueFilter} = this.state
     return (
       <div className="css-middle-container">
         <div className="css-search-container">
@@ -357,6 +420,7 @@ class TablePart extends Component {
             value={searchValue}
           />
         </div>
+        <div>stateDisplayCounter</div>
         {this.onFetchingDetails(apiStatus)}
       </div>
     )
