@@ -167,28 +167,26 @@ class TablePart extends Component {
     totalDeceased: 0,
     stateDetails: '',
     reverse: false,
-    searchStatesList: [],
     searchValueFilter: [],
   }
 
   componentDidMount() {
     this.fetchCallingFunction()
-    this.searchLowerCase()
+    // this.searchLowerCase()
   }
 
-  searchLowerCase = () => {
-    this.setState({
-      searchStatesList: statesList.map(eachState => ({
-        state_code: eachState.state_code,
-        state_name: eachState.state_name.toLowerCase(),
-      })),
-    })
-  }
+  //   searchLowerCase = () => {
+  //     this.setState({
+  //       searchStatesList: statesList.map(eachState => ({
+  //         state_code: eachState.state_code,
+  //         state_name: eachState.state_name.toLowerCase(),
+  //       })),
+  //     })
+  //   }
 
   searchValueFunction = event => {
-    const {searchStatesList, searchValueFilter} = this.state
+    const {searchValueFilter} = this.state
 
-    // console.log(searchStatesList.state_name)
     const targetSearchValue = event.target.value
     this.setState({searchValue: targetSearchValue})
     if (targetSearchValue !== '') {
@@ -217,6 +215,15 @@ class TablePart extends Component {
     } else {
       this.fetchCallingFunction()
     }
+  }
+
+  searchContainer = apiStatus => {
+    console.log(apiStatus === apiStatusConstants.initial)
+    // if (apiStatus === apiStatusConstants.initial) {
+    //   ;<>
+    //     <div>Hello</div>
+    //   </>
+    // }
   }
 
   fetchCallingFunction = async () => {
@@ -403,6 +410,7 @@ class TablePart extends Component {
 
   render() {
     const {searchValue, apiStatus, searchValueFilter} = this.state
+
     return (
       <div className="css-middle-container">
         <div className="css-search-container">
@@ -420,7 +428,7 @@ class TablePart extends Component {
             value={searchValue}
           />
         </div>
-        <div>stateDisplayCounter</div>
+        {this.searchContainer(apiStatus)}
         {this.onFetchingDetails(apiStatus)}
       </div>
     )
