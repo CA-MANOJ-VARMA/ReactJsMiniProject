@@ -186,7 +186,6 @@ class TablePart extends Component {
 
   searchValueFunction = event => {
     const {searchValueFilter} = this.state
-
     const targetSearchValue = event.target.value
     this.setState({searchValue: targetSearchValue})
     if (targetSearchValue !== '') {
@@ -197,6 +196,7 @@ class TablePart extends Component {
 
       const stateListSearchReturn = eachItem => {
         this.setState({searchValueFilter: []})
+        console.log('search Value Filter')
         console.log(searchValueFilter)
         if (
           eachItem.state_name
@@ -208,23 +208,33 @@ class TablePart extends Component {
           this.setState({searchValueFilter: []})
         }
       }
+
       const changeList = statesList.forEach(eachItem =>
         stateListSearchReturn(eachItem),
       )
+      console.log('change list')
       console.log(changeList)
     } else {
       this.fetchCallingFunction()
     }
+
+    return (
+      <div>
+        <h1>Hello</h1>
+      </div>
+    )
   }
 
-  searchContainer = apiStatus => {
-    console.log(apiStatus === apiStatusConstants.initial)
-    // if (apiStatus === apiStatusConstants.initial) {
-    //   ;<>
-    //     <div>Hello</div>
-    //   </>
-    // }
-  }
+  //   searchContainer = () => {
+  //     const {searchValueFilter} = this.state
+  //     console.log('insearchContainer')
+  //     console.log(searchValueFilter)
+  //     return (
+  //       <div>
+  //         <p>Hello</p>
+  //       </div>
+  //     )
+  //   }
 
   fetchCallingFunction = async () => {
     this.setState({apiStatus: apiStatusConstants.progress})
@@ -393,6 +403,7 @@ class TablePart extends Component {
     if (!reverse) {
       statesList.reverse()
       this.setState({reverse: true})
+      console.log('statesList')
       console.log(statesList)
     }
   }
@@ -410,7 +421,9 @@ class TablePart extends Component {
 
   render() {
     const {searchValue, apiStatus, searchValueFilter} = this.state
-
+    console.log('render ')
+    console.log(searchValueFilter)
+    const apistatustrueorFalse = apiStatus === apiStatusConstants.initial
     return (
       <div className="css-middle-container">
         <div className="css-search-container">
@@ -428,7 +441,7 @@ class TablePart extends Component {
             value={searchValue}
           />
         </div>
-        {this.searchContainer(apiStatus)}
+        {/* {apistatustrueorFalse ? this.searchContainer(apiStatus) : ''} */}
         {this.onFetchingDetails(apiStatus)}
       </div>
     )
