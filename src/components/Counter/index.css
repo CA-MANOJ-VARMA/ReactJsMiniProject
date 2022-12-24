@@ -11,6 +11,23 @@
   justify-content: center;
   align-items: center;
   color: #94a3b8;
+  width: 824px;
+  height: 60px;
+  border-radius: 8px;
+  padding: 20px;
+  border-width: 0;
+  background-color: #2f2f43;
+  color: #94a3b8;
+}
+
+.css-input-itself {
+  width: 824px;
+  height: 60px;
+  border-radius: 8px;
+  padding: 20px;
+  border-width: 0;
+  background-color: #2f2f43;
+  color: #94a3b8;
 }
 
 .css-search-icon {
@@ -22,16 +39,6 @@
 .css-cases-icon {
   width: 30px;
   margin-bottom: 15px;
-}
-
-.css-input-itself {
-  width: 824px;
-  height: 60px;
-  border-radius: 8px;
-  padding: 20px;
-  border-width: 0;
-  background-color: #2f2f43;
-  color: #94a3b8;
 }
 
 .css-allcases-container {
@@ -84,4 +91,19 @@
 .css-button-asc-desc {
   background-color: transparent;
   border-width: 0;
+}
+
+.css-searchContainer-after-filtering {
+  display: flex;
+  justify-content: space-between;
+  width: 824px;
+  padding: 20px;
+  color: #94a3b8;
+}
+
+.css-backgroundColor-stateCode {
+  background: rgba(28, 212, 212, 0.16);
+  border-radius: 5px;
+  width: 80px;
+  padding: 4px 6px;
 }

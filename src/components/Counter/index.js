@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
 import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 import Loader from 'react-loader-spinner'
@@ -185,6 +186,7 @@ class TablePart extends Component {
   //   }
 
   searchValueFunction = event => {
+    const pushingArray = []
     const {searchValueFilter} = this.state
     const targetSearchValue = event.target.value
     this.setState({searchValue: targetSearchValue})
@@ -196,45 +198,54 @@ class TablePart extends Component {
 
       const stateListSearchReturn = eachItem => {
         this.setState({searchValueFilter: []})
-        console.log('search Value Filter')
-        console.log(searchValueFilter)
+
+        // console.log('search Value Filter')
+        // console.log(searchValueFilter)
         if (
           eachItem.state_name
             .toLowerCase()
             .includes(targetSearchValue.toLowerCase())
         ) {
-          searchValueFilter.push(eachItem)
+          pushingArray.push(eachItem)
+          console.log('search Value Filter')
+          console.log(searchValueFilter)
         } else {
           this.setState({searchValueFilter: []})
         }
+        this.setState({searchValueFilter: pushingArray})
+        console.log('pushing array')
+        console.log(pushingArray)
+        searchValueFilter.map(eachState => console.log(eachState))
       }
 
       const changeList = statesList.forEach(eachItem =>
         stateListSearchReturn(eachItem),
       )
-      console.log('change list')
-      console.log(changeList)
+      //   console.log('change list')
+      //   console.log(changeList)
     } else {
       this.fetchCallingFunction()
     }
-
-    return (
-      <div>
-        <h1>Hello</h1>
-      </div>
-    )
   }
 
-  //   searchContainer = () => {
-  //     const {searchValueFilter} = this.state
-  //     console.log('insearchContainer')
-  //     console.log(searchValueFilter)
-  //     return (
-  //       <div>
-  //         <p>Hello</p>
-  //       </div>
-  //     )
-  //   }
+  searchContainer = () => {
+    const {searchValueFilter} = this.state
+    console.log('insearchContainer')
+    console.log(searchValueFilter)
+
+    return searchValueFilter.map(eachState => (
+      <div className="css-searchContainer-after-filtering">
+        <div>
+          <p>{eachState.state_name}</p>
+        </div>
+        <Link to={eachState.state_code}>
+          <div className="css-backgroundColor-stateCode">
+            <p>{eachState.state_code}</p>
+          </div>
+        </Link>
+      </div>
+    ))
+  }
 
   fetchCallingFunction = async () => {
     this.setState({apiStatus: apiStatusConstants.progress})
@@ -420,9 +431,9 @@ class TablePart extends Component {
   }
 
   render() {
-    const {searchValue, apiStatus, searchValueFilter} = this.state
-    console.log('render ')
-    console.log(searchValueFilter)
+    const {searchValue, apiStatus} = this.state
+    // console.log('render ')
+    // console.log(searchValueFilter)
     const apistatustrueorFalse = apiStatus === apiStatusConstants.initial
     return (
       <div className="css-middle-container">
@@ -441,7 +452,7 @@ class TablePart extends Component {
             value={searchValue}
           />
         </div>
-        {/* {apistatustrueorFalse ? this.searchContainer(apiStatus) : ''} */}
+        {apistatustrueorFalse ? this.searchContainer() : ''}
         {this.onFetchingDetails(apiStatus)}
       </div>
     )
