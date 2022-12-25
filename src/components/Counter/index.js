@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import {BsSearch} from 'react-icons/bs'
+import {BiChevronRightSquare} from 'react-icons/bi'
 import {FcGenericSortingAsc, FcGenericSortingDesc} from 'react-icons/fc'
 import Loader from 'react-loader-spinner'
 import './index.css'
@@ -173,17 +174,7 @@ class TablePart extends Component {
 
   componentDidMount() {
     this.fetchCallingFunction()
-    // this.searchLowerCase()
   }
-
-  //   searchLowerCase = () => {
-  //     this.setState({
-  //       searchStatesList: statesList.map(eachState => ({
-  //         state_code: eachState.state_code,
-  //         state_name: eachState.state_name.toLowerCase(),
-  //       })),
-  //     })
-  //   }
 
   searchValueFunction = event => {
     const pushingArray = []
@@ -207,14 +198,14 @@ class TablePart extends Component {
             .includes(targetSearchValue.toLowerCase())
         ) {
           pushingArray.push(eachItem)
-          console.log('search Value Filter')
-          console.log(searchValueFilter)
+          //   console.log('search Value Filter')
+          //   console.log(searchValueFilter)
         } else {
           this.setState({searchValueFilter: []})
         }
         this.setState({searchValueFilter: pushingArray})
-        console.log('pushing array')
-        console.log(pushingArray)
+        // console.log('pushing array')
+        // console.log(pushingArray)
         searchValueFilter.map(eachState => console.log(eachState))
       }
 
@@ -230,17 +221,23 @@ class TablePart extends Component {
 
   searchContainer = () => {
     const {searchValueFilter} = this.state
-    console.log('insearchContainer')
-    console.log(searchValueFilter)
+    // console.log('insearchContainer')
+    // console.log(searchValueFilter)
 
     return searchValueFilter.map(eachState => (
       <div className="css-searchContainer-after-filtering">
         <div>
           <p>{eachState.state_name}</p>
         </div>
-        <Link to={eachState.state_code}>
+        <Link
+          to={`/state/${eachState.state_code}`}
+          className="css-link-styling"
+        >
           <div className="css-backgroundColor-stateCode">
-            <p>{eachState.state_code}</p>
+            <p>
+              {eachState.state_code}
+              <BiChevronRightSquare className="css-search-icon-BiChevronRightSquare" />
+            </p>
           </div>
         </Link>
       </div>
@@ -255,7 +252,9 @@ class TablePart extends Component {
     }
     const totalCases = await fetch(baseUrl, options)
     const jsonData = await totalCases.json()
+
     this.setState({stateDetails: jsonData})
+    console.log(jsonData)
     const covidCasesAllValues = Object.values(jsonData)
     // console.log(covidCasesAllValues)
     covidCasesAllValues.map(eachState =>
@@ -414,8 +413,8 @@ class TablePart extends Component {
     if (!reverse) {
       statesList.reverse()
       this.setState({reverse: true})
-      console.log('statesList')
-      console.log(statesList)
+      //   console.log('statesList')
+      //   console.log(statesList)
     }
   }
 
@@ -452,7 +451,9 @@ class TablePart extends Component {
             value={searchValue}
           />
         </div>
-        {apistatustrueorFalse ? this.searchContainer() : ''}
+        <div className="css-searchResults-container">
+          {apistatustrueorFalse ? this.searchContainer() : ''}
+        </div>
         {this.onFetchingDetails(apiStatus)}
       </div>
     )

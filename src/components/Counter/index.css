@@ -93,17 +93,42 @@
   border-width: 0;
 }
 
+.css-backgroundColor-stateCode {
+  background: rgba(28, 212, 212, 0.16);
+  color: #facc15;
+  border-radius: 5px;
+  width: 80px;
+  padding: 4px 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.css-link-styling {
+  text-decoration: none;
+}
+
+.css-link-styling:hover {
+  text-decoration: none;
+}
+
+.css-searchResults-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .css-searchContainer-after-filtering {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 824px;
+  height: 70px;
   padding: 20px;
   color: #94a3b8;
 }
 
-.css-backgroundColor-stateCode {
-  background: rgba(28, 212, 212, 0.16);
-  border-radius: 5px;
-  width: 80px;
-  padding: 4px 6px;
+.css-search-icon-BiChevronRightSquare {
+  color: #facc15;
+  /* width: 40px; */
+  margin-left: 15px;
 }
