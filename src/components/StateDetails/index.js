@@ -149,7 +149,13 @@ const statesList = [
 ]
 
 class StateDetails extends Component {
-  state = {totalCaseDetails: [], stateName: '', date: '', tested: ''}
+  state = {
+    totalCaseDetails: '',
+    stateName: '',
+    date: '',
+    tested: '',
+    districtDetails: [],
+  }
 
   componentDidMount() {
     this.fetchStateDetails()
@@ -157,6 +163,7 @@ class StateDetails extends Component {
 
   fetchStateDetails = async () => {
     const totalCasesArray = []
+    const districtDetailsArray = []
     const {match} = this.props
     const {params} = match
     const {stateCode} = params
@@ -173,15 +180,40 @@ class StateDetails extends Component {
 
     const totalCases = await fetch(baseUrl, options)
     const jsonData = await totalCases.json()
-
+    const districtDetailsPush = Object.entries(
+      jsonData[`${stateCode}`].districts,
+    )
+    console.log(districtDetailsPush[0][0])
+    console.log(typeof districtDetailsPush)
     totalCasesArray.push(jsonData[`${stateCode}`])
-    console.log(totalCasesArray)
+    districtDetailsArray.push([...districtDetailsPush])
+    // console.log(districtDetailsArray)
     this.setState({
       totalCaseDetails: totalCasesArray[0].total,
       stateName: stateFullName[0].state_name,
       date: totalCasesArray[0].meta.date,
       tested: totalCasesArray[0].total.tested,
+      districtDetails: districtDetailsArray,
     })
+  }
+
+  stateInfo = () => {
+    const {date, tested, stateName} = this.state
+    return (
+      <>
+        <div className="css-statename-date-tested-container">
+          <div className="css-stateinfo-statename-date-container">
+            <p className="css-state-name-paragraph">{stateName}</p>
+            <p>Last update on {date}</p>
+          </div>
+          <div className="css-stateinfo-tested-container">
+            <p>Tested</p>
+            <p>{tested}</p>
+          </div>
+        </div>
+        <p>Hello</p>
+      </>
+    )
   }
 
   confrimedRecoveredDeceasedActive = () => {
@@ -244,22 +276,31 @@ class StateDetails extends Component {
     )
   }
 
-  stateInfo = () => {
-    const {date, tested, stateName} = this.state
+  districtDetailsComponent = () => {
+    const {districtDetails} = this.state
+    console.log('isArray')
+    console.log(Array.isArray(districtDetails))
     return (
       <>
-        <p>Hello</p>
+        <ul>
+          {districtDetails.map(eachDistrict => (
+            <li>{eachDistrict[0][0]}</li>
+          ))}
+          <li>Hello</li>
+        </ul>
       </>
     )
   }
 
   render() {
-    const {totalCaseDetails, date, tested} = this.state
+    const {totalCaseDetails, date, tested, districtDetails} = this.state
     console.log(tested)
     return (
       <>
         <div className="css-stateDetails-whole-container">
+          {this.stateInfo()}
           {this.confrimedRecoveredDeceasedActive()}
+          {this.districtDetailsComponent()}
         </div>
       </>
     )
