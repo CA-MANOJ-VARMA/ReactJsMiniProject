@@ -34,3 +34,15 @@
   flex-direction: column;
   justify-content: flex-end;
 }
+
+.css-top-district-ul-container {
+  height: 400px;
+  flex-wrap: wrap;
+}
+
+.css-top-district-list-itself {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}

@@ -155,6 +155,7 @@ class StateDetails extends Component {
     date: '',
     tested: '',
     districtDetails: [],
+    i: 0,
   }
 
   componentDidMount() {
@@ -183,17 +184,24 @@ class StateDetails extends Component {
     const districtDetailsPush = Object.entries(
       jsonData[`${stateCode}`].districts,
     )
-    console.log(districtDetailsPush[0][0])
+    const {districts} = jsonData[`${stateCode}`]
+    console.log(districts)
+    const districtArray = Object.entries(districts)
+    console.log(districtArray)
+    console.log('districtDetailsPush')
+    console.log(districtDetailsPush)
+    console.log(districtDetailsPush[0][1].total.confirmed)
     console.log(typeof districtDetailsPush)
     totalCasesArray.push(jsonData[`${stateCode}`])
-    districtDetailsArray.push([...districtDetailsPush])
-    // console.log(districtDetailsArray)
+    districtDetailsArray.push(districtDetailsPush)
+    console.log('districtDetailsArray')
+    console.log(districtDetailsArray)
     this.setState({
       totalCaseDetails: totalCasesArray[0].total,
       stateName: stateFullName[0].state_name,
       date: totalCasesArray[0].meta.date,
       tested: totalCasesArray[0].total.tested,
-      districtDetails: districtDetailsArray,
+      districtDetails: [districtArray],
     })
   }
 
@@ -278,14 +286,28 @@ class StateDetails extends Component {
 
   districtDetailsComponent = () => {
     const {districtDetails} = this.state
+    const arrayDetails = [...districtDetails]
     console.log('isArray')
-    console.log(Array.isArray(districtDetails))
+    console.log(districtDetails)
+    const length = districtDetails.length - 1
+    const {i} = this.state
     return (
       <>
-        <ul>
-          {districtDetails.map(eachDistrict => (
-            <li>{eachDistrict[0][0]}</li>
-          ))}
+        <ul className="css-top-district-ul-container">
+          {arrayDetails.forEach(eachDistrict => {
+            console.log(...eachDistrict)
+            return (
+              <>
+                <li
+                  className="css-top-district-list-itself"
+                  key={eachDistrict[0][0]}
+                >
+                  <p>{eachDistrict}</p>
+                  <p>{eachDistrict[0][1].total.confirmed}</p>
+                </li>
+              </>
+            )
+          })}
           <li>Hello</li>
         </ul>
       </>
