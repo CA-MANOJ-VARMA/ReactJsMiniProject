@@ -188,20 +188,27 @@ class StateDetails extends Component {
     console.log(districts)
     const districtArray = Object.entries(districts)
     console.log(districtArray)
+    districtArray.map(eachDistrict =>
+      districtDetailsArray.push([
+        eachDistrict[1].total.confirmed,
+        eachDistrict[0],
+      ]),
+    )
     console.log('districtDetailsPush')
-    console.log(districtDetailsPush)
-    console.log(districtDetailsPush[0][1].total.confirmed)
-    console.log(typeof districtDetailsPush)
-    totalCasesArray.push(jsonData[`${stateCode}`])
-    districtDetailsArray.push(districtDetailsPush)
-    console.log('districtDetailsArray')
+    districtDetailsArray.sort((a, b) => b[0] - a[0])
     console.log(districtDetailsArray)
+    // console.log(districtDetailsPush[0][1].total.confirmed)
+    // console.log(typeof districtDetailsPush)
+    totalCasesArray.push(jsonData[`${stateCode}`])
+    // districtDetailsArray.push(districtDetailsPush)
+    console.log('districtDetailsArray')
+    // console.log(districtDetailsArray)
     this.setState({
       totalCaseDetails: totalCasesArray[0].total,
       stateName: stateFullName[0].state_name,
       date: totalCasesArray[0].meta.date,
       tested: totalCasesArray[0].total.tested,
-      districtDetails: [districtArray],
+      districtDetails: districtDetailsArray,
     })
   }
 
@@ -286,7 +293,7 @@ class StateDetails extends Component {
 
   districtDetailsComponent = () => {
     const {districtDetails} = this.state
-    const arrayDetails = [...districtDetails]
+    // const arrayDetails = [...districtDetails]
     console.log('isArray')
     console.log(districtDetails)
     const length = districtDetails.length - 1
@@ -294,21 +301,21 @@ class StateDetails extends Component {
     return (
       <>
         <ul className="css-top-district-ul-container">
-          {arrayDetails.forEach(eachDistrict => {
-            console.log(...eachDistrict)
+          {districtDetails.map(eachDistrict => {
+            console.log('eachDistrict')
+            console.log(eachDistrict[0])
             return (
               <>
                 <li
                   className="css-top-district-list-itself"
-                  key={eachDistrict[0][0]}
+                  key={eachDistrict[0]}
                 >
-                  <p>{eachDistrict}</p>
-                  <p>{eachDistrict[0][1].total.confirmed}</p>
+                  <p className="css-district-paragraph">{eachDistrict[0]}</p>
+                  <p className="css-district-paragraph">{eachDistrict[1]}</p>
                 </li>
               </>
             )
           })}
-          <li>Hello</li>
         </ul>
       </>
     )
@@ -322,6 +329,7 @@ class StateDetails extends Component {
         <div className="css-stateDetails-whole-container">
           {this.stateInfo()}
           {this.confrimedRecoveredDeceasedActive()}
+          <h1 className="css-top-districtis-heading">Top Districts</h1>
           {this.districtDetailsComponent()}
         </div>
       </>

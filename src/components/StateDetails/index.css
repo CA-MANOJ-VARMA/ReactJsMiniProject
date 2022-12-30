@@ -1,7 +1,7 @@
 .css-stateDetails-whole-container {
   background-color: #161625;
-  padding-left: 300px;
-  padding-right: 300px;
+  padding-left: 200px;
+  padding-right: 200px;
 }
 
 .css-statename-date-tested-container {
@@ -36,13 +36,27 @@
 }
 
 .css-top-district-ul-container {
-  height: 400px;
+  display: flex;
   flex-wrap: wrap;
+
+  /* max-width: 900px; */
 }
 
 .css-top-district-list-itself {
   text-decoration: none;
   display: flex;
   justify-content: space-between;
-  width: 200px;
+  width: 400px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.css-district-paragraph {
+  text-align: left;
+  color: #94a3b8;
+}
+
+.css-top-districtis-heading {
+  color: #ff073a;
+  margin-bottom: 30px;
 }
