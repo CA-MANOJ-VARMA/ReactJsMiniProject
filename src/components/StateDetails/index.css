@@ -60,3 +60,13 @@
   color: #ff073a;
   margin-bottom: 30px;
 }
+
+.css-LineChart-Confirmed-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #331427;
+  color: #ff073a;
+  border-radius: 10px;
+}

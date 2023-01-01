@@ -1,5 +1,16 @@
 import './index.css'
 import {Component} from 'react'
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Line,
+  BarChart,
+  Bar,
+} from 'recharts'
 
 const statesList = [
   {
@@ -155,7 +166,11 @@ class StateDetails extends Component {
     date: '',
     tested: '',
     districtDetails: [],
-    i: 0,
+    stateDetailsConfirmed: '',
+    stateDetailsActive: '',
+    stateDetailsRecovered: '',
+    stateDetailsDeceased: '',
+    stateDetailsTested: '',
   }
 
   componentDidMount() {
@@ -165,6 +180,11 @@ class StateDetails extends Component {
   fetchStateDetails = async () => {
     const totalCasesArray = []
     const districtDetailsArray = []
+    const stateDetailsDatesConfirmedArray = []
+    const stateDetailsDatesActiveArray = []
+    const stateDetailsDatesRecoveredArray = []
+    const stateDetailsDatesDeceasedArray = []
+    const stateDetailsDatesTestedArray = []
     const {match} = this.props
     const {params} = match
     const {stateCode} = params
@@ -175,12 +195,59 @@ class StateDetails extends Component {
     console.log(stateFullName[0].state_name)
 
     const baseUrl = 'https://apis.ccbp.in/covid19-state-wise-data'
+    const baseUrlState = `https://apis.ccbp.in/covid19-timelines-data/${stateCode}`
     const options = {
       method: 'GET',
     }
 
     const totalCases = await fetch(baseUrl, options)
+    const timeStateDetails = await fetch(baseUrlState, options)
     const jsonData = await totalCases.json()
+    const timeStateDetailsjsonData = await timeStateDetails.json()
+    const timeStateDetailsJsonDataDates = Object.entries(
+      timeStateDetailsjsonData[`${stateCode}`].dates,
+    )
+    console.log('timeStateDetailsJsonData')
+    console.log(timeStateDetailsJsonDataDates)
+    timeStateDetailsJsonDataDates.map(eachDay =>
+      stateDetailsDatesConfirmedArray.push({
+        date: eachDay[0],
+        count: eachDay[1].total.confirmed,
+      }),
+    )
+
+    timeStateDetailsJsonDataDates.map(eachDay =>
+      stateDetailsDatesActiveArray.push({
+        date: eachDay[0],
+        count:
+          eachDay[1].total.confirmed -
+          eachDay[1].total.recovered -
+          eachDay[1].total.deceased,
+      }),
+    )
+
+    timeStateDetailsJsonDataDates.map(eachDay =>
+      stateDetailsDatesRecoveredArray.push({
+        date: eachDay[0],
+        count: eachDay[1].total.recovered,
+      }),
+    )
+
+    timeStateDetailsJsonDataDates.map(eachDay =>
+      stateDetailsDatesDeceasedArray.push({
+        date: eachDay[0],
+        count: eachDay[1].total.deceased,
+      }),
+    )
+
+    timeStateDetailsJsonDataDates.map(eachDay =>
+      stateDetailsDatesTestedArray.push({
+        date: eachDay[0],
+        count: eachDay[1].total.tested,
+      }),
+    )
+
+    console.log(stateDetailsDatesConfirmedArray)
     const districtDetailsPush = Object.entries(
       jsonData[`${stateCode}`].districts,
     )
@@ -209,6 +276,11 @@ class StateDetails extends Component {
       date: totalCasesArray[0].meta.date,
       tested: totalCasesArray[0].total.tested,
       districtDetails: districtDetailsArray,
+      stateDetailsConfirmed: stateDetailsDatesConfirmedArray,
+      stateDetailsActive: stateDetailsDatesActiveArray,
+      stateDetailsRecovered: stateDetailsDatesRecoveredArray,
+      stateDetailsDeceased: stateDetailsDatesDeceasedArray,
+      stateDetailsTested: stateDetailsDatesTestedArray,
     })
   }
 
@@ -321,6 +393,34 @@ class StateDetails extends Component {
     )
   }
 
+  lineCharts = () => {
+    const {stateDetailsConfirmed} = this.state
+    return (
+      <div className="css-LineCharts-Container">
+        <div className="css-LineChart-Confirmed-Container">
+          <LineChart
+            width={900}
+            height={300}
+            data={stateDetailsConfirmed}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+            fill="#331427"
+          >
+            <XAxis dataKey="date" stroke="#FF073A" />
+            <YAxis domain={['dataMin', 'dataMax']} stroke="#FF073A" />
+            <Tooltip />
+            <Legend verticalAlign="top" height={36} />
+            <Line
+              type="monotone"
+              name="confirmed"
+              dataKey="count"
+              stroke="#FF073A"
+            />
+          </LineChart>
+        </div>
+      </div>
+    )
+  }
+
   render() {
     const {totalCaseDetails, date, tested, districtDetails} = this.state
     console.log(tested)
@@ -331,6 +431,7 @@ class StateDetails extends Component {
           {this.confrimedRecoveredDeceasedActive()}
           <h1 className="css-top-districtis-heading">Top Districts</h1>
           {this.districtDetailsComponent()}
+          {this.lineCharts()}
         </div>
       </>
     )
