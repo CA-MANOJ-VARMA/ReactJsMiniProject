@@ -70,3 +70,41 @@
   color: #ff073a;
   border-radius: 10px;
 }
+
+.css-LineChart-Active-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #132240;
+  color: #007bff;
+  border-radius: 10px;
+}
+.css-LineChart-Recovered-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #182829;
+  color: #27a243;
+  border-radius: 10px;
+}
+.css-LineChart-Deceased-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #1c1c2b;
+  color: #6c757d;
+  border-radius: 10px;
+}
+
+.css-LineChart-Tested-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #230f41;
+  color: #9673b9;
+  border-radius: 10px;
+}

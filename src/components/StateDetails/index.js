@@ -393,8 +393,41 @@ class StateDetails extends Component {
     )
   }
 
+  barGraphCharts = () => {
+    const {
+      stateDetailsConfirmed,
+      stateDetailsActive,
+      stateDetailsRecovered,
+      stateDetailsDeceased,
+    } = this.state
+    const tenStateDetailsConfirmed = stateDetailsConfirmed.slice((0: 10))
+    return (
+      <BarChart
+        width={800}
+        height={450}
+        data={stateDetailsConfirmed.slice(0, 10)}
+      >
+        <XAxis dataKey="date" />
+        <Tooltip />
+
+        <Bar
+          dataKey="count"
+          fill="#8884d8"
+          className="bar"
+          label={{position: 'top'}}
+        />
+      </BarChart>
+    )
+  }
+
   lineCharts = () => {
-    const {stateDetailsConfirmed} = this.state
+    const {
+      stateDetailsConfirmed,
+      stateDetailsActive,
+      stateDetailsRecovered,
+      stateDetailsDeceased,
+      stateDetailsTested,
+    } = this.state
     return (
       <div className="css-LineCharts-Container">
         <div className="css-LineChart-Confirmed-Container">
@@ -408,12 +441,97 @@ class StateDetails extends Component {
             <XAxis dataKey="date" stroke="#FF073A" />
             <YAxis domain={['dataMin', 'dataMax']} stroke="#FF073A" />
             <Tooltip />
-            <Legend verticalAlign="top" height={36} />
+            <Legend verticalAlign="top" align="right" height={36} />
             <Line
               type="monotone"
               name="confirmed"
               dataKey="count"
               stroke="#FF073A"
+              fill="#FF073A"
+            />
+          </LineChart>
+        </div>
+        <div className="css-LineChart-Active-Container">
+          <LineChart
+            width={900}
+            height={300}
+            data={stateDetailsActive}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+            fill="#331427"
+          >
+            <XAxis dataKey="date" stroke="#007BFF" />
+            <YAxis domain={['dataMin', 'dataMax']} stroke="#007BFF" />
+            <Tooltip />
+            <Legend verticalAlign="top" align="right" height={36} />
+            <Line
+              type="monotone"
+              name="Total Active"
+              dataKey="count"
+              stroke="#007BFF"
+              fill="#007BFF"
+            />
+          </LineChart>
+        </div>
+        <div className="css-LineChart-Recovered-Container">
+          <LineChart
+            width={900}
+            height={300}
+            data={stateDetailsRecovered}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+            fill="#331427"
+          >
+            <XAxis dataKey="date" stroke="#27a243" />
+            <YAxis domain={['dataMin', 'dataMax']} stroke="#27a243" />
+            <Tooltip />
+            <Legend verticalAlign="top" align="right" height={36} />
+            <Line
+              type="monotone"
+              name="Recovered"
+              dataKey="count"
+              stroke="#27a243"
+              fill="#27a243"
+            />
+          </LineChart>
+        </div>
+        <div className="css-LineChart-Deceased-Container">
+          <LineChart
+            width={900}
+            height={300}
+            data={stateDetailsDeceased}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+            fill="#331427"
+          >
+            <XAxis dataKey="date" stroke="#6c757d" />
+            <YAxis domain={['dataMin', 'dataMax']} stroke="#6c757d" />
+            <Tooltip />
+            <Legend verticalAlign="top" align="right" height={36} />
+            <Line
+              type="monotone"
+              name="Deceased"
+              dataKey="count"
+              stroke="#6c757d"
+              fill="#6c757d"
+            />
+          </LineChart>
+        </div>
+        <div className="css-LineChart-Tested-Container">
+          <LineChart
+            width={900}
+            height={300}
+            data={stateDetailsTested}
+            margin={{top: 5, right: 30, left: 20, bottom: 5}}
+            fill="#331427"
+          >
+            <XAxis dataKey="date" stroke="#9673b9" />
+            <YAxis domain={['dataMin', 'dataMax']} stroke="#9673b9" />
+            <Tooltip />
+            <Legend verticalAlign="top" align="right" height={36} />
+            <Line
+              type="monotone"
+              name="Tested"
+              dataKey="count"
+              stroke="#9673b9"
+              fill="#9673b9"
             />
           </LineChart>
         </div>
@@ -431,6 +549,7 @@ class StateDetails extends Component {
           {this.confrimedRecoveredDeceasedActive()}
           <h1 className="css-top-districtis-heading">Top Districts</h1>
           {this.districtDetailsComponent()}
+          {this.barGraphCharts()}
           {this.lineCharts()}
         </div>
       </>
