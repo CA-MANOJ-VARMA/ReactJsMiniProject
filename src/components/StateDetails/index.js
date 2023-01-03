@@ -171,6 +171,10 @@ class StateDetails extends Component {
     stateDetailsRecovered: '',
     stateDetailsDeceased: '',
     stateDetailsTested: '',
+    barChartConfimed: true,
+    barChartActive: false,
+    barChartRecovered: false,
+    barChartDeceased: false,
   }
 
   componentDidMount() {
@@ -304,60 +308,117 @@ class StateDetails extends Component {
   }
 
   confrimedRecoveredDeceasedActive = () => {
-    const {totalCaseDetails} = this.state
+    const {
+      totalCaseDetails,
+      barChartConfimed,
+      barChartActive,
+      barChartRecovered,
+      barChartDeceased,
+    } = this.state
     const {confirmed, deceased, recovered, tested} = totalCaseDetails
-
+    const Confirmed = () => {
+      this.setState({
+        barChartConfimed: true,
+        barChartActive: false,
+        barChartRecovered: false,
+        barChartDeceased: false,
+      })
+    }
+    const Active = () => {
+      this.setState({
+        barChartConfimed: false,
+        barChartActive: true,
+        barChartRecovered: false,
+        barChartDeceased: false,
+      })
+    }
+    const Recovered = () => {
+      this.setState({
+        barChartConfimed: false,
+        barChartActive: false,
+        barChartRecovered: true,
+        barChartDeceased: false,
+      })
+    }
+    const Deceased = () => {
+      this.setState({
+        barChartConfimed: false,
+        barChartActive: false,
+        barChartRecovered: false,
+        barChartDeceased: true,
+      })
+    }
     return (
       <>
         <div className="css-allcases-container">
-          <div
-            // testid="countryWideConfirmedCases"
-            className="css-cases-container css-confirmed"
+          <button
+            onClick={Confirmed}
+            type="button"
+            className="css-button-itself"
           >
-            <p>Confirmed</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/Group_1_akx5gv.png"
-              alt="country wide confirmed cases pic"
-              className="css-cases-icon"
-            />
-            <p>{confirmed}</p>
-          </div>
-          <div
-            className="css-cases-container css-Active"
-            // testid="countryWideActiveCases"
+            <div
+              // testid="countryWideConfirmedCases"
+              className="css-cases-container css-confirmed"
+            >
+              <p>Confirmed</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/Group_1_akx5gv.png"
+                alt="country wide confirmed cases pic"
+                className="css-cases-icon"
+              />
+              <p>{confirmed}</p>
+            </div>
+          </button>
+          <button onClick={Active} type="button" className="css-button-itself">
+            <div
+              className="css-cases-container css-Active"
+              // testid="countryWideActiveCases"
+            >
+              <p>Active</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
+                alt="country wide Active cases pic"
+                className="css-cases-icon"
+              />
+              <p>{confirmed - recovered - deceased}</p>
+            </div>
+          </button>
+          <button
+            onClick={Recovered}
+            type="button"
+            className="css-button-itself"
           >
-            <p>Active</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
-              alt="country wide Active cases pic"
-              className="css-cases-icon"
-            />
-            <p>{confirmed - recovered - deceased}</p>
-          </div>
-          <div
-            className="css-cases-container css-Recovered"
-            // testid="countryWideRecoveredCases"
+            <div
+              className="css-cases-container css-Recovered"
+              // testid="countryWideRecoveredCases"
+            >
+              <p>Recovered</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
+                alt="country wide Recovered cases pic"
+                className="css-cases-icon"
+              />
+              <p>{recovered}</p>
+            </div>
+          </button>
+          <button
+            onClick={Deceased}
+            type="button"
+            className="css-button-itself"
           >
-            <p>Recovered</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
-              alt="country wide Recovered cases pic"
-              className="css-cases-icon"
-            />
-            <p>{recovered}</p>
-          </div>
-          <div
-            className="css-cases-container css-Deceased"
-            // testid="countryWideDeceasedCases"
-          >
-            <p>Deceased</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
-              alt="country wide Deceased cases pic"
-              className="css-cases-icon"
-            />
-            <p>{deceased}</p>
-          </div>
+            <div
+              className="css-cases-container css-Deceased"
+              // testid="countryWideDeceasedCases"
+            >
+              <p>Deceased</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
+                alt="country wide Deceased cases pic"
+                className="css-cases-icon"
+              />
+              <p>{deceased}</p>
+            </div>
+          </button>
         </div>
       </>
     )
@@ -399,24 +460,98 @@ class StateDetails extends Component {
       stateDetailsActive,
       stateDetailsRecovered,
       stateDetailsDeceased,
+      barChartConfimed,
+      barChartActive,
+      barChartRecovered,
+      barChartDeceased,
     } = this.state
-    const tenStateDetailsConfirmed = stateDetailsConfirmed.slice((0: 10))
     return (
-      <BarChart
-        width={800}
-        height={450}
-        data={stateDetailsConfirmed.slice(0, 10)}
-      >
-        <XAxis dataKey="date" />
-        <Tooltip />
+      <div className="css-All-BarCharts-Container">
+        {barChartConfimed ? (
+          <div className="css-BarCharts-confirmed-container">
+            <BarChart
+              width={800}
+              height={450}
+              data={stateDetailsConfirmed.slice(0, 10)}
+            >
+              <XAxis dataKey="date" stroke="#FF073A" />
+              <Tooltip />
 
-        <Bar
-          dataKey="count"
-          fill="#8884d8"
-          className="bar"
-          label={{position: 'top'}}
-        />
-      </BarChart>
+              <Bar
+                dataKey="count"
+                fill="#9A0E31"
+                className="bar"
+                label={{position: 'top', fill: '#9A0E31'}}
+              />
+            </BarChart>
+          </div>
+        ) : (
+          ''
+        )}
+        {barChartActive ? (
+          <div className="css-BarCharts-confirmed-container">
+            <BarChart
+              width={800}
+              height={450}
+              data={stateDetailsActive.slice(0, 10)}
+            >
+              <XAxis dataKey="date" stroke="#0A4FA0" />
+              <Tooltip />
+
+              <Bar
+                dataKey="count"
+                fill="#0A4FA0"
+                className="bar"
+                label={{position: 'top', fill: '#0A4FA0'}}
+              />
+            </BarChart>
+          </div>
+        ) : (
+          ''
+        )}
+        {barChartRecovered ? (
+          <div className="css-BarCharts-confirmed-container">
+            <BarChart
+              width={800}
+              height={450}
+              data={stateDetailsRecovered.slice(0, 10)}
+            >
+              <XAxis dataKey="date" stroke="#216837" />
+              <Tooltip />
+
+              <Bar
+                dataKey="count"
+                fill="#216837"
+                className="bar"
+                label={{position: 'top', fill: '#216837'}}
+              />
+            </BarChart>
+          </div>
+        ) : (
+          ''
+        )}
+        {barChartDeceased ? (
+          <div className="css-BarCharts-confirmed-container">
+            <BarChart
+              width={800}
+              height={450}
+              data={stateDetailsDeceased.slice(0, 10)}
+            >
+              <XAxis dataKey="date" stroke="#474C57" />
+              <Tooltip />
+
+              <Bar
+                dataKey="count"
+                fill="#474C57"
+                className="bar"
+                label={{position: 'top', fill: '#474C57'}}
+              />
+            </BarChart>
+          </div>
+        ) : (
+          ''
+        )}
+      </div>
     )
   }
 

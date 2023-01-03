@@ -108,3 +108,13 @@
   color: #9673b9;
   border-radius: 10px;
 }
+
+.css-BarCharts-confirmed-container {
+  display: flex;
+  justify-content: center;
+}
+
+.css-button-itself {
+  background-color: transparent;
+  border-width: 0;
+}
