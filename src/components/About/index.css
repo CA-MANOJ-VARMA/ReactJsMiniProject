@@ -1,0 +1,20 @@
+.css-about-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  background-color: #161625;
+  color: #f8fafc;
+}
+
+.css-question-para {
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.css-answer-para {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.css-question-answer-container {
+  margin-top: 30px;
+}
