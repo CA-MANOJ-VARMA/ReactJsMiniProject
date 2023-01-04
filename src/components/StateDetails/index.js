@@ -675,8 +675,6 @@ class StateDetails extends Component {
   }
 
   render() {
-    const {totalCaseDetails, date, tested, districtDetails} = this.state
-    console.log(tested)
     return (
       <>
         <div className="css-stateDetails-whole-container">

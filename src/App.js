@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './components/Home'
 import StateDetails from './components/StateDetails'
 import About from './components/About'
+import Footer from './components/Footer'
 
 const App = () => (
   <>
@@ -13,6 +14,7 @@ const App = () => (
       <Route exact path="/state/:stateCode" component={StateDetails} />
       <Route exact path="/About" component={About} />
     </Switch>
+    <Footer />
   </>
 )
 
