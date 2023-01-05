@@ -1,0 +1,19 @@
+.css-notfound-image-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 345px;
+  background-color: #161625;
+}
+.css-notfound-image {
+  height: 200px;
+}
+
+.css-pagenotfound-heading {
+  color: #cbd5e1;
+  margin-top: 10px;
+}
+.css-pagenotfound-paragraph {
+  color: #94a3b8;
+}

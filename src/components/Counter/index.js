@@ -273,7 +273,7 @@ class TablePart extends Component {
       // testid="homeRouteLoader"
     >
       <Loader
-        type="ThreeDots"
+        type="TailSpin"
         color="#0b69ff"
         testid="loader"
         height="50"
