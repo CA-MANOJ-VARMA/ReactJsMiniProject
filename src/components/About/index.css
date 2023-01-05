@@ -13,9 +13,13 @@
 .css-answer-para {
   color: #007bff;
   font-weight: bold;
-  margin: 0;
+  margin-bottom: 0;
 }
 
-/* .css-question-answer-container {
-  margin: 30px;
-} */
+.css-question-answer-container {
+  list-style-type: none;
+}
+
+.css-question-answer-whole-container {
+  margin-bottom: 0;
+}

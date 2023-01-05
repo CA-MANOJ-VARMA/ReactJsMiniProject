@@ -32,7 +32,7 @@ class About extends Component {
     console.log('faqDetails return')
     console.log(faqDetails)
     return (
-      <div className="css-question-answer-whole-container">
+      <ul className="css-question-answer-whole-container">
         {faqDetails.map(eachQuestion => {
           const answer = eachQuestion[1]
           console.log(eachQuestion[1])
@@ -49,13 +49,13 @@ class About extends Component {
           }
 
           return (
-            <div className="css-question-answer-container">
+            <li className="css-question-answer-container">
               <p className="css-question-para">{eachQuestion[0]}</p>
               <p className="css-answer-para">{answer}</p>
-            </div>
+            </li>
           )
         })}
-      </div>
+      </ul>
     )
   }
 
