@@ -443,7 +443,13 @@ class StateDetails extends Component {
                   className="css-top-district-list-itself"
                   key={eachDistrict[0]}
                 >
-                  <p className="css-district-paragraph">{eachDistrict[0]}</p>
+                  {eachDistrict[0] === undefined ? (
+                    <p className="css-district-paragraph">0</p>
+                  ) : (
+                    <p className="css-district-paragraph">{eachDistrict[0]}</p>
+                  )}
+                  {console.log(eachDistrict[0] === undefined)}
+
                   <p className="css-district-paragraph">{eachDistrict[1]}</p>
                 </li>
               </>
