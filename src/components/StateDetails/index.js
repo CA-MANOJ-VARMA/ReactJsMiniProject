@@ -4,10 +4,7 @@ import {
   LineChart,
   XAxis,
   YAxis,
-<<<<<<< HEAD
-=======
   CartesianGrid,
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
   Tooltip,
   Legend,
   Line,
@@ -223,10 +220,7 @@ class StateDetails extends Component {
       }),
     )
 
-<<<<<<< HEAD
     stateDetailsDatesConfirmedArray.sort((a, b) => b.count - a.count)
-=======
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     timeStateDetailsJsonDataDates.map(eachDay =>
       stateDetailsDatesActiveArray.push({
         date: eachDay[0],
@@ -236,44 +230,27 @@ class StateDetails extends Component {
           eachDay[1].total.deceased,
       }),
     )
-<<<<<<< HEAD
     stateDetailsDatesActiveArray.sort((a, b) => b.count - a.count)
-=======
-
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     timeStateDetailsJsonDataDates.map(eachDay =>
       stateDetailsDatesRecoveredArray.push({
         date: eachDay[0],
         count: eachDay[1].total.recovered,
       }),
     )
-<<<<<<< HEAD
-    stateDetailsDatesRecoveredArray.sort((a, b) => b.count - a.count)
-=======
-
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     timeStateDetailsJsonDataDates.map(eachDay =>
       stateDetailsDatesDeceasedArray.push({
         date: eachDay[0],
         count: eachDay[1].total.deceased,
       }),
     )
-<<<<<<< HEAD
     stateDetailsDatesDeceasedArray.sort((a, b) => b.count - a.count)
-=======
-
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     timeStateDetailsJsonDataDates.map(eachDay =>
       stateDetailsDatesTestedArray.push({
         date: eachDay[0],
         count: eachDay[1].total.tested,
       }),
     )
-<<<<<<< HEAD
     stateDetailsDatesTestedArray.sort((a, b) => b.count - a.count)
-=======
-
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     console.log(stateDetailsDatesConfirmedArray)
     const districtDetailsPush = Object.entries(
       jsonData[`${stateCode}`].districts,
@@ -317,11 +294,7 @@ class StateDetails extends Component {
       <>
         <div className="css-statename-date-tested-container">
           <div className="css-stateinfo-statename-date-container">
-<<<<<<< HEAD
             <h1 className="css-state-name-paragraph">{stateName}</h1>
-=======
-            <p className="css-state-name-paragraph">{stateName}</p>
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
             <p>Last update on {date}</p>
           </div>
           <div className="css-stateinfo-tested-container">
@@ -384,21 +357,13 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-<<<<<<< HEAD
               testid="stateSpecificConfirmedCasesContainer"
-=======
-              // testid="countryWideConfirmedCases"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
               className="css-cases-container css-confirmed"
             >
               <p>Confirmed</p>
               <img
                 src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/Group_1_akx5gv.png"
-<<<<<<< HEAD
                 alt="state specific confirmed cases pic"
-=======
-                alt="country wide confirmed cases pic"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
                 className="css-cases-icon"
               />
               <p>{confirmed}</p>
@@ -406,22 +371,13 @@ class StateDetails extends Component {
           </button>
           <button onClick={Active} type="button" className="css-button-itself">
             <div
-<<<<<<< HEAD
               testid="stateSpecificActiveCasesContainer"
               className="css-cases-container css-Active"
-=======
-              className="css-cases-container css-Active"
-              // testid="countryWideActiveCases"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
             >
               <p>Active</p>
               <img
                 src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
-<<<<<<< HEAD
                 alt="state specific active cases pic"
-=======
-                alt="country wide Active cases pic"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
                 className="css-cases-icon"
               />
               <p>{confirmed - recovered - deceased}</p>
@@ -433,22 +389,13 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-<<<<<<< HEAD
               testid="stateSpecificRecoveredCasesContainer"
               className="css-cases-container css-Recovered"
-=======
-              className="css-cases-container css-Recovered"
-              // testid="countryWideRecoveredCases"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
             >
               <p>Recovered</p>
               <img
                 src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
-<<<<<<< HEAD
                 alt="state specific recovered cases pic"
-=======
-                alt="country wide Recovered cases pic"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
                 className="css-cases-icon"
               />
               <p>{recovered}</p>
@@ -460,22 +407,13 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-<<<<<<< HEAD
               testid="stateSpecificDeceasedCasesContainer"
               className="css-cases-container css-Deceased"
-=======
-              className="css-cases-container css-Deceased"
-              // testid="countryWideDeceasedCases"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
             >
               <p>Deceased</p>
               <img
                 src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
-<<<<<<< HEAD
                 alt="state specific deceased cases pic"
-=======
-                alt="country wide Deceased cases pic"
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
                 className="css-cases-icon"
               />
               <p>{deceased}</p>
@@ -491,7 +429,6 @@ class StateDetails extends Component {
     // const arrayDetails = [...districtDetails]
     console.log('isArray')
     console.log(districtDetails)
-<<<<<<< HEAD
 
     return (
       <>
@@ -499,13 +436,6 @@ class StateDetails extends Component {
           testid="topDistrictsUnorderedList"
           className="css-top-district-ul-container"
         >
-=======
-    const length = districtDetails.length - 1
-    const {i} = this.state
-    return (
-      <>
-        <ul className="css-top-district-ul-container">
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
           {districtDetails.map(eachDistrict => {
             console.log('eachDistrict')
             console.log(eachDistrict[0])
@@ -643,14 +573,10 @@ class StateDetails extends Component {
     } = this.state
     return (
       <div className="css-LineCharts-Container">
-<<<<<<< HEAD
         <div
           testid="lineChartsContainer"
           className="css-LineChart-Confirmed-Container"
         >
-=======
-        <div className="css-LineChart-Confirmed-Container">
->>>>>>> 203527472a87eed531f08a56198ee368d28986f9
           <LineChart
             width={900}
             height={300}
