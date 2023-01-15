@@ -160,7 +160,7 @@ const apiStatusConstants = {
   failurre: 'FAILURE',
 }
 
-class TablePart extends Component {
+class Counter extends Component {
   state = {
     searchValue: '',
     apiStatus: apiStatusConstants.initial,
@@ -208,10 +208,8 @@ class TablePart extends Component {
         // console.log(pushingArray)
         searchValueFilter.map(eachState => console.log(eachState))
       }
-
-      const changeList = statesList.forEach(eachItem =>
-        stateListSearchReturn(eachItem),
-      )
+      // const changeList =
+      statesList.forEach(eachItem => stateListSearchReturn(eachItem))
       //   console.log('change list')
       //   console.log(changeList)
     } else {
@@ -268,12 +266,9 @@ class TablePart extends Component {
   }
 
   renderLoader = () => (
-    <div
-      className="products-loader-container"
-      // testid="homeRouteLoader"
-    >
+    <div testid="homeRouteLoader" className="products-loader-container">
       <Loader
-        type="ThreeDots"
+        type="TailSpin"
         color="#0b69ff"
         testid="loader"
         height="50"
@@ -306,10 +301,11 @@ class TablePart extends Component {
 
     return (
       <>
-        <div className="css-allcases-container">
-          <div
-            // testid="countryWideConfirmedCases"
+        <ul className="css-allcases-container">
+          <li
+            testid="countryWideConfirmedCases"
             className="css-cases-container css-confirmed"
+            key="1"
           >
             <p>Confirmed</p>
             <img
@@ -318,10 +314,11 @@ class TablePart extends Component {
               className="css-cases-icon"
             />
             <p>{totalConfirmed}</p>
-          </div>
-          <div
+          </li>
+          <li
             className="css-cases-container css-Active"
-            // testid="countryWideActiveCases"
+            testid="countryWideActiveCases"
+            key="2"
           >
             <p>Active</p>
             <img
@@ -330,10 +327,11 @@ class TablePart extends Component {
               className="css-cases-icon"
             />
             <p>{totalConfirmed - totalRecovered - totalDeceased}</p>
-          </div>
-          <div
+          </li>
+          <li
             className="css-cases-container css-Recovered"
-            // testid="countryWideRecoveredCases"
+            testid="countryWideRecoveredCases"
+            key="3"
           >
             <p>Recovered</p>
             <img
@@ -342,10 +340,11 @@ class TablePart extends Component {
               className="css-cases-icon"
             />
             <p>{totalRecovered}</p>
-          </div>
-          <div
+          </li>
+          <li
             className="css-cases-container css-Deceased"
-            // testid="countryWideDeceasedCases"
+            testid="countryWideDeceasedCases"
+            key="4"
           >
             <p>Deceased</p>
             <img
@@ -354,9 +353,12 @@ class TablePart extends Component {
               className="css-cases-icon"
             />
             <p>{totalDeceased}</p>
-          </div>
-        </div>
-        <div className="css-table-container">
+          </li>
+        </ul>
+        <div
+          testid="searchResultsUnorderedList"
+          className="css-table-container"
+        >
           <table>
             <thead className="css-table-header-container">
               <tr>
@@ -364,7 +366,7 @@ class TablePart extends Component {
                   States/UT
                   <button
                     type="button"
-                    //   testid="ascendingSort"
+                    testid="ascendingSort"
                     className="css-button-asc-desc"
                     onClick={this.ascreverse}
                   >
@@ -372,7 +374,7 @@ class TablePart extends Component {
                   </button>
                   <button
                     type="button"
-                    //   testid="descendingSort"
+                    testid="descendingSort"
                     className="css-button-asc-desc"
                     onClick={this.descreverse}
                   >
@@ -460,4 +462,4 @@ class TablePart extends Component {
   }
 }
 
-export default TablePart
+export default Counter

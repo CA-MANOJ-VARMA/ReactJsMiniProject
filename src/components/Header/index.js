@@ -1,6 +1,6 @@
-import './index.css'
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
+import './index.css'
 
 class Header extends Component {
   render() {
@@ -8,20 +8,24 @@ class Header extends Component {
       <>
         <div className="css-navbar-container">
           <ul className="css-ul-list-container">
-            <li>
+            <li key="1">
               <Link to="/" className="css-LINK-itself">
-                <p className="css-COVID19INDIA-style">
-                  COVID19<span className="css-INDIA-style">INDIA</span>
-                </p>
+                <p className="css-COVID19INDIA-style">COVID19INDIA</p>
               </Link>
             </li>
-            <li>
+          </ul>
+          <ul className="css-ul-list-container">
+            <li key="2">
               <div className="css-home-about-list-itself">
                 <Link to="/" className="css-LINK-itself">
-                  <p className="css-Home-paragraph">Home</p>
+                  <button type="button" className="css-Home-paragraph">
+                    Home
+                  </button>
                 </Link>
-                <Link to="/about" className="css-LINK-itself">
-                  <p>About</p>
+                <Link to="/About" className="css-LINK-itself">
+                  <button type="button" className="css-Home-paragraph">
+                    About
+                  </button>
                 </Link>
               </div>
             </li>

@@ -1,0 +1,120 @@
+.css-stateDetails-whole-container {
+  background-color: #161625;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.css-statename-date-tested-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 30px;
+  color: #94a3b8;
+}
+
+.css-state-name-paragraph {
+  background-color: rgba(2, 132, 199, 0.16);
+  color: #0ea5e9;
+  padding: 20px;
+  font-size: 20px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.css-stateinfo-statename-date-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.css-stateinfo-tested-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.css-top-district-ul-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  /* max-width: 900px; */
+}
+
+.css-top-district-list-itself {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+.css-district-paragraph {
+  text-align: left;
+  color: #94a3b8;
+}
+
+.css-top-districtis-heading {
+  color: #ff073a;
+  margin-bottom: 30px;
+}
+
+.css-LineChart-Confirmed-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #331427;
+  color: #ff073a;
+  border-radius: 10px;
+}
+
+.css-LineChart-Active-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #132240;
+  color: #007bff;
+  border-radius: 10px;
+}
+.css-LineChart-Recovered-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #182829;
+  color: #27a243;
+  border-radius: 10px;
+}
+.css-LineChart-Deceased-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #1c1c2b;
+  color: #6c757d;
+  border-radius: 10px;
+}
+
+.css-LineChart-Tested-Container {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  background-color: #230f41;
+  color: #9673b9;
+  border-radius: 10px;
+}
+
+.css-BarCharts-confirmed-container {
+  display: flex;
+  justify-content: center;
+}
+
+.css-button-itself {
+  background-color: transparent;
+  border-width: 0;
+}
