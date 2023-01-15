@@ -1,4 +1,5 @@
 import {Component} from 'react'
+<<<<<<< HEAD
 import Loader from 'react-loader-spinner'
 import './index.css'
 
@@ -14,13 +15,22 @@ class About extends Component {
     apiStatus: apiStatusConstants.initial,
     faqDetails: [],
   }
+=======
+import './index.css'
+
+class About extends Component {
+  state = {faqDetails: []}
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
 
   componentDidMount() {
     this.fetchFaqsDetail()
   }
 
   fetchFaqsDetail = async () => {
+<<<<<<< HEAD
     this.setState({apiStatus: apiStatusConstants.progress})
+=======
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     const faqDetailsPush = []
     const baseUrl = 'https://apis.ccbp.in/covid19-faqs'
     const options = {
@@ -37,6 +47,7 @@ class About extends Component {
     this.setState({faqDetails: faqDetailsPush})
     console.log('faqDetails push')
     console.log(faqDetailsPush)
+<<<<<<< HEAD
     this.setState({apiStatus: apiStatusConstants.success})
   }
 
@@ -52,15 +63,23 @@ class About extends Component {
     </div>
   )
 
+=======
+  }
+
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
   faqDetailsReturn = () => {
     const {faqDetails} = this.state
     console.log('faqDetails return')
     console.log(faqDetails)
     return (
+<<<<<<< HEAD
       <ul
         testid="faqsUnorderedList"
         className="css-question-answer-whole-container"
       >
+=======
+      <ul className="css-question-answer-whole-container">
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
         {faqDetails.map(eachQuestion => {
           const answer = eachQuestion[1]
           console.log(eachQuestion[1])
@@ -77,7 +96,11 @@ class About extends Component {
           }
 
           return (
+<<<<<<< HEAD
             <li className="css-question-answer-container" key={eachQuestion[0]}>
+=======
+            <li className="css-question-answer-container">
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
               <p className="css-question-para">{eachQuestion[0]}</p>
               <p className="css-answer-para">{answer}</p>
             </li>
@@ -87,6 +110,7 @@ class About extends Component {
     )
   }
 
+<<<<<<< HEAD
   onFetchingAboutDetails = apiStatus => {
     switch (apiStatus) {
       case apiStatusConstants.progress:
@@ -100,12 +124,19 @@ class About extends Component {
 
   render() {
     const {apiStatus} = this.state
+=======
+  render() {
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
     return (
       <>
         <div className="css-about-container">
           <h1>About</h1>
           <h2>COVID-19 vaccines be ready for distribution</h2>
+<<<<<<< HEAD
           {this.onFetchingAboutDetails(apiStatus)}
+=======
+          {this.faqDetailsReturn()}
+>>>>>>> 203527472a87eed531f08a56198ee368d28986f9
         </div>
       </>
     )
