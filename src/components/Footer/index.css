@@ -11,3 +11,8 @@
   width: 20px;
   margin-right: 20px;
 }
+
+.css-icon-container {
+  display: flex;
+  gap: 30px;
+}

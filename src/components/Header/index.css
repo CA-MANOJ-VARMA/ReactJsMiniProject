@@ -13,11 +13,20 @@
 .css-ul-list-container {
   list-style-type: none;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   margin: 0;
 }
 
+.css-ul-home-about-list-container {
+  list-style-type: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
 .css-home-about-list-itself {
   display: flex;
   align-items: center;

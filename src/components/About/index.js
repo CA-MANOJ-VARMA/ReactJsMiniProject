@@ -41,7 +41,10 @@ class About extends Component {
   }
 
   renderLoader = () => (
-    <div testid="aboutRouteLoader" className="products-loader-container">
+    <div
+      className="products-loader-container"
+      // testid="aboutRouteLoader"
+    >
       <Loader
         type="TailSpin"
         color="#0b69ff"
@@ -58,7 +61,7 @@ class About extends Component {
     console.log(faqDetails)
     return (
       <ul
-        testid="faqsUnorderedList"
+        // testid="faqsUnorderedList"
         className="css-question-answer-whole-container"
       >
         {faqDetails.map(eachQuestion => {

@@ -357,7 +357,7 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-              testid="stateSpecificConfirmedCasesContainer"
+              //   testid="stateSpecificConfirmedCasesContainer"
               className="css-cases-container css-confirmed"
             >
               <p>Confirmed</p>
@@ -371,7 +371,7 @@ class StateDetails extends Component {
           </button>
           <button onClick={Active} type="button" className="css-button-itself">
             <div
-              testid="stateSpecificActiveCasesContainer"
+              //   testid="stateSpecificActiveCasesContainer"
               className="css-cases-container css-Active"
             >
               <p>Active</p>
@@ -389,7 +389,7 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-              testid="stateSpecificRecoveredCasesContainer"
+              //   testid="stateSpecificRecoveredCasesContainer"
               className="css-cases-container css-Recovered"
             >
               <p>Recovered</p>
@@ -407,7 +407,7 @@ class StateDetails extends Component {
             className="css-button-itself"
           >
             <div
-              testid="stateSpecificDeceasedCasesContainer"
+              //   testid="stateSpecificDeceasedCasesContainer"
               className="css-cases-container css-Deceased"
             >
               <p>Deceased</p>
@@ -433,7 +433,7 @@ class StateDetails extends Component {
     return (
       <>
         <ul
-          testid="topDistrictsUnorderedList"
+          //   testid="topDistrictsUnorderedList"
           className="css-top-district-ul-container"
         >
           {districtDetails.map(eachDistrict => {
@@ -574,7 +574,7 @@ class StateDetails extends Component {
     return (
       <div className="css-LineCharts-Container">
         <div
-          testid="lineChartsContainer"
+          //   testid="lineChartsContainer"
           className="css-LineChart-Confirmed-Container"
         >
           <LineChart

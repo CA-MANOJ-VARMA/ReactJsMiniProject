@@ -8,21 +8,21 @@ class Header extends Component {
       <>
         <div className="css-navbar-container">
           <ul className="css-ul-list-container">
-            <li key="1">
+            <li key="covid19india">
               <Link to="/" className="css-LINK-itself">
-                <p className="css-COVID19INDIA-style">COVID19INDIA</p>
+                <p>
+                  COVID19<span className="css-INDIA-style">INDIA</span>
+                </p>
               </Link>
             </li>
-          </ul>
-          <ul className="css-ul-list-container">
-            <li key="2">
-              <div className="css-home-about-list-itself">
+            <li key="homebuttonheader">
+              <div className="css-home-about-container">
                 <Link to="/" className="css-LINK-itself">
                   <button type="button" className="css-Home-paragraph">
                     Home
                   </button>
                 </Link>
-                <Link to="/About" className="css-LINK-itself">
+                <Link to="/about" className="css-LINK-itself">
                   <button type="button" className="css-Home-paragraph">
                     About
                   </button>

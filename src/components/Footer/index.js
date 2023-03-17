@@ -15,9 +15,9 @@ class Footer extends Component {
         </div>
         <p>we stand with everyone fighting on the front lines</p>
         <div className="css-icon-container">
-          <VscGithubAlt className="css-icon-itself" />
-          <FiInstagram className="css-icon-itself" />
-          <FaTwitter className="css-icon-itself" />
+          <VscGithubAlt />
+          <FiInstagram />
+          <FaTwitter />
         </div>
       </div>
     )
