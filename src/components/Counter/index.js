@@ -223,7 +223,7 @@ class Counter extends Component {
     // console.log(searchValueFilter)
 
     return searchValueFilter.map(eachState => (
-      <div className="css-searchContainer-after-filtering">
+      <li className="css-searchContainer-after-filtering">
         <div>
           <p>{eachState.state_name}</p>
         </div>
@@ -238,7 +238,7 @@ class Counter extends Component {
             </p>
           </div>
         </Link>
-      </div>
+      </li>
     ))
   }
 
@@ -266,10 +266,7 @@ class Counter extends Component {
   }
 
   renderLoader = () => (
-    <div
-      className="products-loader-container"
-      // testid="homeRouteLoader"
-    >
+    <div className="products-loader-container" testid="homeRouteLoader">
       <Loader
         type="TailSpin"
         color="#0b69ff"
@@ -295,7 +292,11 @@ class Counter extends Component {
       <tr key={statePassedName}>
         <td>{statePassedName}</td>
         <td>{statePassedDetails.total.confirmed}</td>
-        <td>{statePassedDetails.total.confirmed}</td>
+        <td>
+          {statePassedDetails.total.confirmed -
+            statePassedDetails.total.recovered -
+            statePassedDetails.total.deceased}
+        </td>
         <td>{statePassedDetails.total.recovered}</td>
         <td>{statePassedDetails.total.deceased}</td>
         <td>{statePassedDetails.meta.population}</td>
@@ -306,8 +307,8 @@ class Counter extends Component {
       <>
         <ul className="css-allcases-container">
           <li
-            // testid="countryWideConfirmedCases"
             className="css-cases-container css-confirmed"
+            testid="countryWideConfirmedCases"
             key="1"
           >
             <p>Confirmed</p>
@@ -320,7 +321,7 @@ class Counter extends Component {
           </li>
           <li
             className="css-cases-container css-Active"
-            // testid="countryWideActiveCases"
+            testid="countryWideActiveCases"
             key="2"
           >
             <p>Active</p>
@@ -333,7 +334,7 @@ class Counter extends Component {
           </li>
           <li
             className="css-cases-container css-Recovered"
-            // testid="countryWideRecoveredCases"
+            testid="countryWideRecoveredCases"
             key="3"
           >
             <p>Recovered</p>
@@ -346,7 +347,7 @@ class Counter extends Component {
           </li>
           <li
             className="css-cases-container css-Deceased"
-            // testid="countryWideDeceasedCases"
+            testid="countryWideDeceasedCases"
             key="4"
           >
             <p>Deceased</p>
@@ -358,10 +359,7 @@ class Counter extends Component {
             <p>{totalDeceased}</p>
           </li>
         </ul>
-        <div
-          //   testid="searchResultsUnorderedList"
-          className="css-table-container"
-        >
+        <div className="css-table-container" testid="stateWiseCovidDataTable">
           <table>
             <thead className="css-table-header-container">
               <tr>
@@ -440,7 +438,7 @@ class Counter extends Component {
     // console.log(searchValueFilter)
     const apistatustrueorFalse = apiStatus === apiStatusConstants.initial
     return (
-      <div className="css-middle-container">
+      <ul className="css-middle-container">
         <div className="css-search-container">
           {/* <img
             src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670777171/covid19dashboard/search_x8cc8d.png"
@@ -456,11 +454,14 @@ class Counter extends Component {
             value={searchValue}
           />
         </div>
-        <div className="css-searchResults-container">
+        <ul
+          className="css-searchResults-container"
+          testid="searchResultsUnorderedList"
+        >
           {apistatustrueorFalse ? this.searchContainer() : ''}
-        </div>
+        </ul>
         {this.onFetchingDetails(apiStatus)}
-      </div>
+      </ul>
     )
   }
 }
