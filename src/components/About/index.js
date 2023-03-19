@@ -41,10 +41,7 @@ class About extends Component {
   }
 
   renderLoader = () => (
-    <div
-      className="products-loader-container"
-      // testid="aboutRouteLoader"
-    >
+    <div className="products-loader-container" testid="aboutRouteLoader">
       <Loader
         type="TailSpin"
         color="#0b69ff"

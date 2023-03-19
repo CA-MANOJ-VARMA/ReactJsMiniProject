@@ -135,3 +135,25 @@
   /* width: 40px; */
   margin-left: 15px;
 }
+
+.css-ul-table-container {
+  list-style-type: none;
+  padding: 0;
+}
+
+.css-table-header-container {
+  display: flex;
+
+  justify-content: flex-start;
+}
+
+.css-table-list-item {
+  display: flex;
+
+  justify-content: flex-start;
+}
+
+.css-table-cell-margin {
+  width: 190px;
+  margin-top: 5px;
+}

@@ -207,6 +207,7 @@ class StateDetails extends Component {
     const totalCases = await fetch(baseUrl, options)
     const timeStateDetails = await fetch(baseUrlState, options)
     const jsonData = await totalCases.json()
+    console.log(jsonData)
     const timeStateDetailsjsonData = await timeStateDetails.json()
     const timeStateDetailsJsonDataDates = Object.entries(
       timeStateDetailsjsonData[`${stateCode}`].dates,
@@ -271,6 +272,8 @@ class StateDetails extends Component {
     // console.log(districtDetailsPush[0][1].total.confirmed)
     // console.log(typeof districtDetailsPush)
     totalCasesArray.push(jsonData[`${stateCode}`])
+    console.log('Total cases array details')
+    console.log(totalCasesArray)
     // districtDetailsArray.push(districtDetailsPush)
     console.log('districtDetailsArray')
     // console.log(districtDetailsArray)

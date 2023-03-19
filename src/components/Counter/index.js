@@ -289,18 +289,26 @@ class Counter extends Component {
     // console.log(statesList.reverse())
 
     const stateDetailsInTable = (statePassedDetails, statePassedName) => (
-      <tr key={statePassedName}>
-        <td>{statePassedName}</td>
-        <td>{statePassedDetails.total.confirmed}</td>
-        <td>
+      <li key={statePassedName} className="css-table-list-item">
+        <p className="css-table-cell-margin">{statePassedName}</p>
+        <p className="css-table-cell-margin">
+          {statePassedDetails.total.confirmed}
+        </p>
+        <p className="css-table-cell-margin">
           {statePassedDetails.total.confirmed -
             statePassedDetails.total.recovered -
             statePassedDetails.total.deceased}
-        </td>
-        <td>{statePassedDetails.total.recovered}</td>
-        <td>{statePassedDetails.total.deceased}</td>
-        <td>{statePassedDetails.meta.population}</td>
-      </tr>
+        </p>
+        <p className="css-table-cell-margin">
+          {statePassedDetails.total.recovered}
+        </p>
+        <p className="css-table-cell-margin">
+          {statePassedDetails.total.deceased}
+        </p>
+        <p className="css-table-cell-margin">
+          {statePassedDetails.meta.population}
+        </p>
+      </li>
     )
 
     return (
@@ -309,7 +317,7 @@ class Counter extends Component {
           <li
             className="css-cases-container css-confirmed"
             testid="countryWideConfirmedCases"
-            key="1"
+            key="countryWideConfirmedCases"
           >
             <p>Confirmed</p>
             <img
@@ -322,7 +330,7 @@ class Counter extends Component {
           <li
             className="css-cases-container css-Active"
             testid="countryWideActiveCases"
-            key="2"
+            key="countryWideActiveCases"
           >
             <p>Active</p>
             <img
@@ -335,12 +343,12 @@ class Counter extends Component {
           <li
             className="css-cases-container css-Recovered"
             testid="countryWideRecoveredCases"
-            key="3"
+            key="countryWideRecoveredCases"
           >
             <p>Recovered</p>
             <img
               src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
-              alt="country wide Recovered cases pic"
+              alt="country wide recovered cases pic"
               className="css-cases-icon"
             />
             <p>{totalRecovered}</p>
@@ -360,44 +368,51 @@ class Counter extends Component {
           </li>
         </ul>
         <div className="css-table-container" testid="stateWiseCovidDataTable">
-          <table>
-            <thead className="css-table-header-container">
-              <tr>
-                <th>
-                  States/UT
-                  <button
-                    type="button"
-                    // testid="ascendingSort"
-                    className="css-button-asc-desc"
-                    onClick={this.ascreverse}
-                  >
-                    <FcGenericSortingAsc />
-                  </button>
-                  <button
-                    type="button"
-                    // testid="descendingSort"
-                    className="css-button-asc-desc"
-                    onClick={this.descreverse}
-                  >
-                    <FcGenericSortingDesc />
-                  </button>
-                </th>
-                <th>Confirmed</th>
-                <th>Active</th>
-                <th>Recovered</th>
-                <th>Deceased</th>
-                <th>Population</th>
-              </tr>
-            </thead>
-            <tbody>
-              {statesList.map(eachState =>
-                stateDetailsInTable(
-                  stateDetails[eachState.state_code],
-                  eachState.state_name,
-                ),
-              )}
-            </tbody>
-          </table>
+          {/* <table> */}
+          <div className="css-table-header-container">
+            <div className="css-table-cell-margin">
+              <p>States/UT</p>
+              <button
+                type="button"
+                className="css-button-asc-desc"
+                testid="ascendingSort"
+                onClick={this.ascreverse}
+              >
+                <FcGenericSortingAsc />
+              </button>
+              <button
+                type="button"
+                className="css-button-asc-desc"
+                testid="descendingSort"
+                onClick={this.descreverse}
+              >
+                <FcGenericSortingDesc />
+              </button>
+            </div>
+            <div className="css-table-cell-margin">
+              <p>Confirmed</p>
+            </div>
+            <div className="css-table-cell-margin">
+              <p>Active</p>
+            </div>
+            <div className="css-table-cell-margin">
+              <p>Recovered</p>
+            </div>
+            <div className="css-table-cell-margin">
+              <p>Deceased</p>
+            </div>
+            <div className="css-table-cell-margin">
+              <p>Population</p>
+            </div>
+          </div>
+          <ul className="css-ul-table-container">
+            {statesList.map(eachState =>
+              stateDetailsInTable(
+                stateDetails[eachState.state_code],
+                eachState.state_name,
+              ),
+            )}
+          </ul>
         </div>
       </>
     )
@@ -438,7 +453,7 @@ class Counter extends Component {
     // console.log(searchValueFilter)
     const apistatustrueorFalse = apiStatus === apiStatusConstants.initial
     return (
-      <ul className="css-middle-container">
+      <div className="css-middle-container">
         <div className="css-search-container">
           {/* <img
             src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670777171/covid19dashboard/search_x8cc8d.png"
@@ -461,7 +476,7 @@ class Counter extends Component {
           {apistatustrueorFalse ? this.searchContainer() : ''}
         </ul>
         {this.onFetchingDetails(apiStatus)}
-      </ul>
+      </div>
     )
   }
 }
