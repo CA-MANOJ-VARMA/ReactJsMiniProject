@@ -1,5 +1,6 @@
 import './index.css'
 import {Component} from 'react'
+import Loader from 'react-loader-spinner'
 import {
   LineChart,
   XAxis,
@@ -180,6 +181,42 @@ class StateDetails extends Component {
   componentDidMount() {
     this.fetchStateDetails()
   }
+
+  renderLoader = () => (
+    <div className="products-loader-container" testid="homeRouteLoader">
+      <Loader
+        type="TailSpin"
+        color="#0b69ff"
+        testid="loader"
+        height="50"
+        width="50"
+      />
+    </div>
+  )
+
+  renderLoader = () => (
+    <div className="products-loader-container" testid="stateDetailsLoader">
+      <Loader
+        type="TailSpin"
+        color="#0b69ff"
+        testid="loader"
+        height="50"
+        width="50"
+      />
+    </div>
+  )
+
+  renderLoader = () => (
+    <div className="products-loader-container" testid="timelinesDataLoader">
+      <Loader
+        type="TailSpin"
+        color="#0b69ff"
+        testid="loader"
+        height="50"
+        width="50"
+      />
+    </div>
+  )
 
   fetchStateDetails = async () => {
     const totalCasesArray = []

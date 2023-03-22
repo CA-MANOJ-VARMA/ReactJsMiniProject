@@ -223,22 +223,20 @@ class Counter extends Component {
     // console.log(searchValueFilter)
 
     return searchValueFilter.map(eachState => (
-      <li className="css-searchContainer-after-filtering">
-        <div>
-          <p>{eachState.state_name}</p>
-        </div>
-        <Link
-          to={`/state/${eachState.state_code}`}
-          className="css-link-styling"
-        >
+      <Link to={`/state/${eachState.state_code}`} className="css-link-styling">
+        <li className="css-searchContainer-after-filtering">
+          <div>
+            <p>{eachState.state_name}</p>
+          </div>
+
           <div className="css-backgroundColor-stateCode">
             <p>
               {eachState.state_code}
               <BiChevronRightSquare className="css-search-icon-BiChevronRightSquare" />
             </p>
           </div>
-        </Link>
-      </li>
+        </li>
+      </Link>
     ))
   }
 
@@ -335,7 +333,7 @@ class Counter extends Component {
             <p>Active</p>
             <img
               src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
-              alt="country wide Active cases pic"
+              alt="country wide active cases pic"
               className="css-cases-icon"
             />
             <p>{totalConfirmed - totalRecovered - totalDeceased}</p>
@@ -361,7 +359,7 @@ class Counter extends Component {
             <p>Deceased</p>
             <img
               src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
-              alt="country wide Deceased cases pic"
+              alt="country wide deceased cases pic"
               className="css-cases-icon"
             />
             <p>{totalDeceased}</p>
