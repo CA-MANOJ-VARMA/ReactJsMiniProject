@@ -314,58 +314,59 @@ class Counter extends Component {
         <ul className="css-allcases-container">
           <li
             className="css-cases-container css-confirmed"
-            testid="countryWideConfirmedCases"
             key="countryWideConfirmedCases"
           >
-            <p>Confirmed</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/Group_1_akx5gv.png"
-              alt="country wide confirmed cases pic"
-              className="css-cases-icon"
-            />
-            <p>{totalConfirmed}</p>
+            <div testid="countryWideConfirmedCases">
+              <p>Confirmed</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/Group_1_akx5gv.png"
+                alt="country wide confirmed cases pic"
+                className="css-cases-icon"
+              />
+              <p>{totalConfirmed}</p>
+            </div>
           </li>
           <li
             className="css-cases-container css-Active"
-            testid="countryWideActiveCases"
             key="countryWideActiveCases"
           >
-            <p>Active</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
-              alt="country wide active cases pic"
-              className="css-cases-icon"
-            />
-            <p>{totalConfirmed - totalRecovered - totalDeceased}</p>
+            <div testid="countryWideActiveCases">
+              <p>Active</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776775/covid19dashboard/protection_1_1_tey5sy.png"
+                alt="country wide active cases pic"
+                className="css-cases-icon"
+              />
+              <p>{totalConfirmed - totalRecovered - totalDeceased}</p>
+            </div>
           </li>
           <li
             className="css-cases-container css-Recovered"
-            testid="countryWideRecoveredCases"
             key="countryWideRecoveredCases"
           >
-            <p>Recovered</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
-              alt="country wide recovered cases pic"
-              className="css-cases-icon"
-            />
-            <p>{totalRecovered}</p>
+            <div testid="countryWideRecoveredCases">
+              <p>Recovered</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/recovered_1_1_elprw1.png"
+                alt="country wide recovered cases pic"
+                className="css-cases-icon"
+              />
+              <p>{totalRecovered}</p>
+            </div>
           </li>
-          <li
-            className="css-cases-container css-Deceased"
-            testid="countryWideDeceasedCases"
-            key="4"
-          >
-            <p>Deceased</p>
-            <img
-              src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
-              alt="country wide deceased cases pic"
-              className="css-cases-icon"
-            />
-            <p>{totalDeceased}</p>
+          <li className="css-cases-container css-Deceased" key="4">
+            <div testid="countryWideDeceasedCases">
+              <p>Deceased</p>
+              <img
+                src="https://res.cloudinary.com/deem8dd5i/image/upload/v1670776776/covid19dashboard/Corona_Virus_Symptoms_Shortness_of_breath_2_n3zzoj.png"
+                alt="country wide deceased cases pic"
+                className="css-cases-icon"
+              />
+              <p>{totalDeceased}</p>
+            </div>
           </li>
         </ul>
-        <div className="css-table-container" testid="stateWiseCovidDataTable">
+        <table className="css-table-container" testid="stateWiseCovidDataTable">
           {/* <table> */}
           <div className="css-table-header-container">
             <div className="css-table-cell-margin">
@@ -411,7 +412,7 @@ class Counter extends Component {
               ),
             )}
           </ul>
-        </div>
+        </table>
       </>
     )
   }
